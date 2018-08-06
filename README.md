@@ -34,7 +34,19 @@ bower install
 6.Run grunt to lint, build and run a local server (have a look into `Gruntfile.js` to see all the tasks).
 
 ```sh
-grunt
+grunt build
 ```
 
-7.Open the app in your browser: [http://localhost:8080](http://localhost:8080)
+7.Open the app in your browser: [http://localhost:8082](http://localhost:8082)
+
+## Some notes
+
+1.You can code using ES8.
+
+2.Is possible to use async/await (babel-polyfills already imported in Component).
+
+3.Transpiled version is served in port 8081, and Dist version in port 8082 (see grunt file).
+
+4.UI5 preload compatible version was set for the current LTS version: 1.52.
+
+5.Remember to change to your own namespace.

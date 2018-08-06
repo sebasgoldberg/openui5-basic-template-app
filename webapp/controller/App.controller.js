@@ -1,15 +1,11 @@
-sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/ui/demo/basicTemplate/model/formatter"
-], function(Controller, formatter) {
-	"use strict";
+import Controller from "sap/ui/core/mvc/Controller";
+import formatter from "sap/ui/demo/basicTemplate/model/formatter";
 
-	return Controller.extend("sap.ui.demo.basicTemplate.controller.App", {
+export default Controller.extend("sap.ui.demo.basicTemplate.controller.App", {
 
-		formatter: formatter,
+    formatter: formatter,
 
-		onInit: function () {
+    onInit: function () {
 
-		}
-	});
+    }
 });
