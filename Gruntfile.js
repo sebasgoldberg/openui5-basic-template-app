@@ -1,53 +1,53 @@
-'use strict';
+"use strict";
 
 module.exports = function(grunt) {
 
     grunt.initConfig({
 
         dir: {
-            webapp: 'webapp',
-            dist: 'dist',
-            transp: 'transp',
-            bower_components: 'bower_components'
+            webapp: "webapp",
+            dist: "dist",
+            transp: "transp",
+            bower_components: "bower_components"
         },
 
         connect: {
             options: {
                 port: 8082,
-                hostname: 'localhost'
+                hostname: "localhost"
             },
             src: {},
             dist: {
                 options: {
                     port: 8081,
-                    },
                 },
+            },
             transp: {},
         },
 
         copy:{
             transp: {
-              files:[ {
-                  expand: true,
-                  cwd: '<%= dir.webapp %>',
-                  src: ['**/*', '!**/*.js', ],
-                  dest: 'transp/',
-              },
-              {
-                  expand: true,
-                  cwd: 'node_modules/babel-polyfill/dist',
-                  src: ['polyfill.js', ],
-                  dest: 'transp/lib/',
-              }]
+                files:[ {
+                    expand: true,
+                    cwd: "<%= dir.webapp %>",
+                    src: ["**/*", "!**/*.js", ],
+                    dest: "transp/",
+                },
+                {
+                    expand: true,
+                    cwd: "node_modules/babel-polyfill/dist",
+                    src: ["polyfill.js", ],
+                    dest: "transp/lib/",
+                }]
 
             },
             dist: {
-              files:[ {
-                  expand: true,
-                  cwd: '<%= dir.transp %>',
-                  src: ['manifest.json', 'index.html', '**/*', ],
-                  dest: 'dist/',
-              }]
+                files:[ {
+                    expand: true,
+                    cwd: "<%= dir.transp %>",
+                    src: ["manifest.json", "index.html", "**/*", ],
+                    dest: "dist/",
+                }]
 
             },
         },
@@ -59,18 +59,18 @@ module.exports = function(grunt) {
             src: {
                 files:[ {
                     expand: true,
-                    cwd:  'webapp/',
-                    src: ['**/*.js'],
-                    dest: 'transp/',
+                    cwd:  "webapp/",
+                    src: ["**/*.js"],
+                    dest: "transp/",
                 }]
             }
         },
 
         watch: {
             all:{
-              files: ['webapp/**/*'],
-              tasks: ['clean:transp', 'babel', 'copy:transp']
-                }
+                files: ["webapp/**/*"],
+                tasks: ["clean:transp", "babel", "copy:transp"]
+            }
         },
 
         openui5_connect: {
@@ -80,17 +80,17 @@ module.exports = function(grunt) {
             },
             transp: {
                 options: {
-                    appresources: 'transp'
+                    appresources: "transp"
                 }
             },
             src: {
                 options: {
-                    appresources: 'webapp'
+                    appresources: "webapp"
                 }
             },
             dist: {
                 options: {
-                    appresources: '<%= dir.dist %>',
+                    appresources: "<%= dir.dist %>",
                 }
             }
         },
@@ -99,11 +99,11 @@ module.exports = function(grunt) {
             component: {
                 options: {
                     resources: {
-                        cwd: 'transp',
-                        prefix: 'sap/ui/demo/basicTemplate'
+                        cwd: "transp",
+                        prefix: "sap/ui/demo/basicTemplate"
                     },
-                    dest: '<%= dir.dist %>',
-                    compatVersion: '1.52',
+                    dest: "<%= dir.dist %>",
+                    compatVersion: "1.52",
                 },
                 components: true
             }
@@ -111,44 +111,44 @@ module.exports = function(grunt) {
 
         clean: {
             // @todo Verificar se funciona.
-            dist: '<%= dir.dist %>/',
-            transp: 'transp/'
+            dist: "<%= dir.dist %>/",
+            transp: "transp/"
         },
 
         eslint: {
-            webapp: ['<%= dir.webapp %>']
+            webapp: ["<%= dir.webapp %>"]
         }
 
     });
 
     // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-openui5');
-    grunt.loadNpmTasks('grunt-eslint');
-    grunt.loadNpmTasks('grunt-babel');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks("grunt-contrib-connect");
+    grunt.loadNpmTasks("grunt-contrib-clean");
+    grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks("grunt-openui5");
+    grunt.loadNpmTasks("grunt-eslint");
+    grunt.loadNpmTasks("grunt-babel");
+    grunt.loadNpmTasks("grunt-contrib-watch");
 
     // Server task
-    grunt.registerTask('serve', function(target) {
-        grunt.task.run('openui5_connect:' + (target || 'src') + ':keepalive');
+    grunt.registerTask("serve", function(target) {
+        grunt.task.run("openui5_connect:" + (target || "src") + ":keepalive");
     });
 
     // Linting task
-    grunt.registerTask('lint', ['eslint']);
+    grunt.registerTask("lint", ["eslint"]);
 
-    //grunt.registerTask('mybabel', ['babel']);
+    //grunt.registerTask("mybabel", ["babel"]);
 
     // Build task
-    grunt.registerTask('build', ['transp', 'clean:dist', 'openui5_preload', 'copy:dist']);
+    grunt.registerTask("build", ["transp", "clean:dist", "openui5_preload", "copy:dist"]);
 
-    grunt.registerTask('transp', ['clean:transp', 'babel', 'copy:transp']);
+    grunt.registerTask("transp", ["clean:transp", "babel", "copy:transp"]);
 
     // Default task
-    grunt.registerTask('default', [
-        'lint',
-        'build',
-        'serve:dist'
+    grunt.registerTask("default", [
+        "lint",
+        "build",
+        "serve:dist"
     ]);
 };

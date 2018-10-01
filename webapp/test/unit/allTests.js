@@ -1,6 +1,6 @@
 sap.ui.define([
-	"./model/formatter",
-	"./controller/App.controller"
+    "./model/formatter",
+    "./controller/App.controller"
 ], function() {
-	"use strict";
+    "use strict";
 });
