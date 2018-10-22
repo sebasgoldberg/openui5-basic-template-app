@@ -1,9 +1,6 @@
 import UIComponent from "sap/ui/core/UIComponent";
 import models from "sap/ui/demo/basicTemplate/model/models";
 
-/*eslint no-unused-vars: ["error", { "varsIgnorePattern": "polyfill" }]*/
-import polyfill from "sap/ui/demo/basicTemplate/lib/polyfill";
-
 export default UIComponent.extend("sap.ui.demo.basicTemplate.Component", {
 
     metadata: {

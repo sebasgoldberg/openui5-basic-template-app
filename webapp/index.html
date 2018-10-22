@@ -9,11 +9,14 @@
 
 		<script id="sap-ui-bootstrap"
 			src="https://sapui5.hana.ondemand.com/1.52.13/resources/sap-ui-core.js"
-			data-sap-ui-libs="sap.m"
+			data-sap-ui-libs="sap.m,custom.libs.external.polyfill"
 			data-sap-ui-theme="sap_belize"
 			data-sap-ui-compatVersion="edge"
 			data-sap-ui-preload="async"
-			data-sap-ui-resourceroots='{"sap.ui.demo.basicTemplate": "./"}'>
+			data-sap-ui-resourceroots='{
+                "sap.ui.demo.basicTemplate": "./",
+                "custom.libs.external.polyfill": "resources/ui5-babel-polyfills/dist/"
+                }'>
 		</script>
 
 		<link rel="stylesheet" type="text/css" href="css/style.css">
