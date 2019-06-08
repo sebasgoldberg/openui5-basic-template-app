@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 
         connect: {
             options: {
-                port: 8082,
+                port: 8080,
                 hostname: "localhost"
             },
             src: {},
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
         watch: {
             all:{
                 files: ["webapp/**/*"],
-                tasks: ["clean:transp", "babel", "copy:transp"]
+                tasks: ["transp",]
             }
         },
 
@@ -113,6 +113,11 @@ module.exports = function(grunt) {
 
         eslint: {
             webapp: ["<%= dir.webapp %>"]
+        },
+
+        exec: {
+            i18n_conv: "find transp/i18n/ -type f -exec native2ascii {} {} \\;",
+            zip_dist: "cd dist && zip -r ../dist.zip ./",
         }
 
     });
@@ -125,6 +130,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-eslint");
     grunt.loadNpmTasks("grunt-babel");
     grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-exec");
 
     // Server task
     grunt.registerTask("serve", function(target) {
@@ -137,9 +143,9 @@ module.exports = function(grunt) {
     //grunt.registerTask("mybabel", ["babel"]);
 
     // Build task
-    grunt.registerTask("build", ["transp", "clean:dist", "openui5_preload", "copy:dist"]);
+    grunt.registerTask("build", ["transp", "clean:dist", "openui5_preload", "copy:dist", "exec:zip_dist"]);
 
-    grunt.registerTask("transp", ["clean:transp", "babel", "copy:transp"]);
+    grunt.registerTask("transp", ["clean:transp", "babel", "copy:transp", "exec:i18n_conv"]);
 
     // Default task
     grunt.registerTask("default", [
