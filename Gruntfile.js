@@ -73,7 +73,10 @@ module.exports = function(grunt) {
     grunt.registerTask("lint", ["eslint"]);
 
     // Build task
-    grunt.registerTask("transp", ["clean:webapp", "babel", "copy:webapp"]);
+    if (process.platform === "win32")
+        grunt.registerTask("transp", ["clean:webapp", "babel", "copy:webapp"])
+    else
+        grunt.registerTask("transp", ["clean:webapp", "babel", "copy:webapp", "exec:i18n_conv"]);
 
     // Default task
     grunt.registerTask("default", [
