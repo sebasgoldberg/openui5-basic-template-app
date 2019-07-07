@@ -8,7 +8,7 @@ module.exports = function(config) {
 	config.set({
 
 		preprocessors: {
-			'{webapp,webapp/!(test)}/*.js': ['coverage']
+			'{transp,transp/!(test)}/*.js': ['coverage']
 		},
 
 		coverageReporter: {
