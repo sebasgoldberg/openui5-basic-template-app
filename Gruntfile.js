@@ -5,7 +5,6 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         dir: {
-            src: "src",
             webapp: "webapp",
             dist: "dist",
             transp: "transp",
@@ -15,9 +14,9 @@ module.exports = function(grunt) {
             webapp: {
                 files:[ {
                     expand: true,
-                    cwd: "<%= dir.src %>",
+                    cwd: "<%= dir.webapp %>",
                     src: ["**/*", "!**/*.js", ],
-                    dest: "webapp/",
+                    dest: "transp/",
                 },
                 ]
 
@@ -28,34 +27,34 @@ module.exports = function(grunt) {
             options: {
                 sourceMap: true
             },
-            src: {
+            webapp: {
                 files:[ {
                     expand: true,
-                    cwd:  "src/",
+                    cwd:  "webapp/",
                     src: ["**/*.js"],
-                    dest: "webapp/",
+                    dest: "transp/",
                 }]
             }
         },
 
         watch: {
             all:{
-                files: ["src/**/*"],
+                files: ["webapp/**/*"],
                 tasks: ["transp",]
             }
         },
 
         clean: {
             dist: "dist/",
-            webapp: "webapp/",
+            transp: "transp/",
         },
 
         eslint: {
-            src: ["<%= dir.src %>"]
+            webapp: ["<%= dir.webapp %>"]
         },
 
         exec: {
-            i18n_conv: "find webapp/i18n/ -type f -exec native2ascii {} {} \\;",
+            i18n_conv: "find transp/i18n/ -type f -exec native2ascii {} {} \\;",
             zip_dist: "cd dist && zip -r ../dist.zip ./",
         }
 
@@ -74,9 +73,9 @@ module.exports = function(grunt) {
 
     // Build task
     if (process.platform === "win32")
-        grunt.registerTask("transp", ["clean:webapp", "babel", "copy:webapp"])
+        grunt.registerTask("transp", ["clean:transp", "babel", "copy:webapp"])
     else
-        grunt.registerTask("transp", ["clean:webapp", "babel", "copy:webapp", "exec:i18n_conv"]);
+        grunt.registerTask("transp", ["clean:transp", "babel", "copy:webapp", "exec:i18n_conv"]);
 
     // Default task
     grunt.registerTask("default", [
