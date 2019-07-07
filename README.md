@@ -77,6 +77,7 @@ For more build and development options please see: [UI5 Build and Development To
     npm install --save-dev grunt-eslint
     npm install --save-dev grunt-contrib-watch
     npm install --save-dev grunt-exec
+    npm install --save-dev babel-plugin-transform-es2015-modules-ui5
     npm install -S ui5-babel-polyfills
     ```
 1. Copy the Gruntfile.js and .babelrc files to your project.

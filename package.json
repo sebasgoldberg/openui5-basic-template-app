@@ -23,6 +23,7 @@
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
     "@ui5/cli": "^1.0.0",
+    "babel-plugin-transform-es2015-modules-ui5": "^6.0.0-alpha.2",
     "eslint": "^4.19.1",
     "grunt": "^1.0.4",
     "grunt-babel": "^8.0.0",
